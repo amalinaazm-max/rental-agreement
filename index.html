@@ -459,12 +459,21 @@ section("Rental Details & Payment Summary");
   labelValue("End Date:", endDate, rightX, y);
   y += 7;
 
-  labelValue("Weekly Rate: SGD $", weeklyRate, leftX, y);
-  labelValue("Monthly Rate: SGD $", monthlyRate, rightX, y);
+  
+doc.text("Weekly Rate: S$", leftX, y);
+doc.text(String(weeklyRate), leftX + 80, y);
+
+doc.text("Monthly Rate: S$", rightX, y);
+doc.text(String(monthlyRate), rightX + 80, y);
   y += 7;
 
-  labelValue("Security Deposit: SGD $", securityDeposit, leftX, y);
-  labelValue("Initial Payment: SGD $", initialPayment, rightX, y);
+  
+doc.text("Security Deposit: SGD $", leftX, y);
+doc.text(String(securityDeposit), leftX + 80, y); 
+
+doc.text("Initial Payment: SGD $", rightX, y);
+doc.text(String(initialPayment), rightX + 80, y);
+
 
   // ---------- OTHER DRIVER ----------
 section("Additional Driver's Particulars");
