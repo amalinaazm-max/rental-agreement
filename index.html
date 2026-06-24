@@ -459,20 +459,37 @@ section("Rental Details & Payment Summary");
   labelValue("End Date:", endDate, rightX, y);
   y += 7;
 
-  
+// ✅ LABELS (bold, size 10)
+doc.setFont(undefined, "bold");
+doc.setFontSize(10);
+
 doc.text("Weekly Rate: S$", leftX, y);
-doc.text(String(weeklyRate), leftX + 80, y);
-
 doc.text("Monthly Rate: S$", rightX, y);
-doc.text(String(monthlyRate), rightX + 80, y);
-  y += 7;
 
-  
+// ✅ VALUES (normal, size 9)
+doc.setFont(undefined, "normal");
+doc.setFontSize(9);
+
+doc.text(String(weeklyRate), leftX + 40, y);
+doc.text(String(monthlyRate), rightX + 40, y);
+y += 7;
+
+
+// ✅ LABELS again
+doc.setFont(undefined, "bold");
+doc.setFontSize(10);
+
 doc.text("Security Deposit: SGD $", leftX, y);
-doc.text(String(securityDeposit), leftX + 80, y); 
-
 doc.text("Initial Payment: SGD $", rightX, y);
-doc.text(String(initialPayment), rightX + 80, y);
+
+// ✅ VALUES again
+doc.setFont(undefined, "normal");
+doc.setFontSize(9);
+
+doc.text(String(securityDeposit), leftX + 40, y);
+doc.text(String(initialPayment), rightX + 40, y);
+
+
 
 
   // ---------- OTHER DRIVER ----------
