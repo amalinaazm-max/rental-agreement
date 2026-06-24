@@ -155,6 +155,9 @@ input, select {
 
   <label>Initial Payment (SGD$)</label>
   <input id="initialPayment">
+
+<label>Remarks</label>
+  <input id="remarks">
 </div>
 
 <button onclick="generateAgreement()">✅ Generate Agreement</button>
@@ -280,7 +283,7 @@ The Company will not be liable for any damages or charges in the event of a punc
 The Hirer agrees to pay $600 per headlamp or taillamp for damage caused by a collision with inanimate objects.
 
 4. Vehicle Functional Damage
-Under this Agreement, the Hirer is liable to pay a maximum sum of $0 for damages for the Company’s vehicle including the above in the event of an accident that damages the functional parts of the car.
+Under this Agreement, the Hirer is liable to pay a maximum sum of $500 for damages for the Company’s vehicle including the above in the event of an accident that damages the functional parts of the car.
 Examples but not limited to the following are: Suspension components, Radiator, Engine & Transmission.
 
 5. Third Party Damages
@@ -330,6 +333,7 @@ By signing below, both parties acknowledge that they have read, understood, and 
   const monthlyRate = get("monthlyRate");
   const securityDeposit = get("securityDeposit");
   const initialPayment = get("initialPayment");
+const remarks = get("remarks");
 
   // ---------- BORDER ----------
   doc.rect(10, 10, 190, 277);
@@ -488,8 +492,9 @@ doc.setFontSize(9);
 
 doc.text(String(securityDeposit), leftX + 40, y);
 doc.text(String(initialPayment), rightX + 40, y);
+y += 7;
 
-
+labelValue("Remarks:", remarks, leftX, y);
 
 
   // ---------- OTHER DRIVER ----------
