@@ -10,6 +10,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
+
+* {
+  box-sizing: border-box;
+}
+
 input, select {
   width: 100%;
   padding: 10px;
@@ -616,6 +621,88 @@ if (/^\d+\./.test(line.trim())) {
 // ✅ FINAL signature at end of page
 drawSignatureFooter(doc);
 
+// ==============================
+// ✅ DEPOSIT RECEIPT PAGE
+// ==============================
+
+doc.addPage();
+drawHeader();
+
+let yPos3 = 60;
+
+// ✅ Title (already centered)
+doc.setFont("times", "bold");
+doc.setFontSize(16);
+doc.text("Deposit Receipt", 105, yPos3, null, null, "center");
+
+yPos3 += 15;
+
+// ✅ Statement (CENTERED)
+doc.setFont("times", "normal");
+doc.setFontSize(11);
+
+const statement = doc.splitTextToSize(
+  "We hereby acknowledge receipt of the security deposit for the vehicle listed below from the hirer, as detailed in this agreement.",
+  150
+);
+
+// center each line
+statement.forEach(line => {
+  doc.text(line, 105, yPos3, null, null, "center");
+  yPos3 += 6;
+});
+
+yPos3 += 10;
+
+// ✅ Hirer details (CENTERED)
+doc.text(`Customer Name: ${mainName}`, 20, yPos3);
+yPos3 += 8;
+
+doc.text(`NRIC: ${mainNric}`, 20, yPos3);
+yPos3 += 8;
+
+doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, yPos3);
+
+yPos3 += 15;
+
+// ✅ Vehicle Details header (centered + bold)
+doc.setFont("times", "bold");
+doc.text("Vehicle Details", 20, yPos3);
+
+yPos3 += 8;
+
+doc.setFont("times", "normal");
+
+doc.text(`Vehicle No.: ${carPlate}`, 20, yPos3);
+yPos3 += 8;
+
+doc.text(`Make/Model: ${model}`, 20, yPos3);
+yPos3 += 8;
+
+doc.text(`Colour: ${colour}`, 20, yPos3);
+yPos3 += 8;
+
+doc.text(`Engine No.: ${engine}`, 20, yPos3);
+yPos3 += 8;
+
+doc.text(`Chassis No.: ${chassis}`, 20, yPos3);
+``
+
+yPos3 += 15;
+
+// ✅ Amount section (CENTERED + emphasis)
+doc.setFont("times", "bold");
+doc.text(`Deposit Amount Received: SGD $${securityDeposit}`, 105, yPos3, null, null, "center");
+
+yPos3 += 10;
+
+doc.setFont("times", "normal");
+doc.text(`Initial Payment: SGD $${initialPayment}`, 105, yPos3, null, null, "center");
+
+yPos3 += 40;
+
+// ✅ Signature stays left/right (DON’T center this)
+drawSignatureFooter(doc);
 
   // ---------- SAVE ----------
   doc.save(`Rental_Agreement_${carPlate}.pdf`);
